@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>de.gedoplan</groupId>
+    <artifactId>build-master</artifactId>
+    <version>2022.7.1</version>
+    <relativePath></relativePath>
+  </parent>
+
+  <groupId>de.gedoplan.showcase</groupId>
+  <artifactId>jakarta-ee-demo-rest</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <packaging>war</packaging>
+
+  <properties>
+    <java.code.version>17</java.code.version>
+
+    <payara.version>5.2021.10</payara.version>
+
+    <wildfly.bootable.jar.version>7.0.0.Final</wildfly.bootable.jar.version>
+    <wildfly.version>27.0.0.Alpha3</wildfly.version>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>gedoplanPublic</id>
+      <url>https://service.gedoplan.de/nexus/content/groups/public</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>jakarta.platform</groupId>
+      <artifactId>jakarta.jakartaee-api</artifactId>
+      <version>9.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>jakarta.ws.rs</groupId>
+      <artifactId>jakarta.ws.rs-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.24</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <defaultGoal>package</defaultGoal>
+    <finalName>${project.artifactId}</finalName>
+  </build>
+
+  <!-- Following are profiles for different project setups / runtime selections -->
+  <profiles>
+
+    <!-- Profile for WildFly bootable JAR: Standard build plus plugin for provisioning a WildFly hollow JAR -->
+    <profile>
+      <id>wildfly</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.wildfly.plugins</groupId>
+            <artifactId>wildfly-jar-maven-plugin</artifactId>
+            <version>${wildfly.bootable.jar.version}</version>
+            <configuration>
+              <feature-pack-location>wildfly@maven(org.jboss.universe:community-universe)#${wildfly.version}</feature-pack-location>
+              <layers>
+                <layer>jaxrs</layer>
+                <layer>cdi</layer>
+                <layer>jpa</layer>
+                <layer>h2-default-datasource</layer>
+              </layers>
+              <excluded-layers>
+                <layer>deployment-scanner</layer>
+              </excluded-layers>
+              <hollow-jar>true</hollow-jar>
+              <!--
+              <plugin-options>
+                <jboss-maven-dist/>
+              </plugin-options>
+              -->
+              <output-file-name>wildfly-bootable.jar</output-file-name>
+              <record-state>true</record-state>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>package</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!-- End of WildFly bootable JAR profile -->
+
+    <!-- Profile for Payara Micro: Standard build plus download of Payara Micro -->
+    <profile>
+      <id>payara-micro</id>
+      <build>
+        <plugins>
+          <plugin>
+            <!-- Download Payara Micro -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>3.0.1</version>
+            <inherited>false</inherited>
+            <configuration>
+              <outputDirectory>${project.build.directory}</outputDirectory>
+            </configuration>
+            <executions>
+
+              <execution>
+                <id>payara-micro</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>copy</goal>
+                </goals>
+                <configuration>
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>fish.payara.extras</groupId>
+                      <artifactId>payara-micro</artifactId>
+                      <version>${payara.version}</version>
+                      <type>jar</type>
+                      <destFileName>payara-micro.jar</destFileName>
+                    </artifactItem>
+                  </artifactItems>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!-- End of Payara Micro profile -->
+
+    <!-- Profile for Open Liberty: Standard build plus download of Open Liberty -->
+    <profile>
+      <id>open-liberty</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>io.openliberty.tools</groupId>
+            <artifactId>liberty-maven-plugin</artifactId>
+            <version>3.5.1</version>
+            <configuration>
+              <copyDependencies>
+                <location>${project.build.directory}/liberty/wlp/usr/shared/resources</location>
+                <dependency>
+                  <groupId>com.h2database</groupId>
+                  <artifactId>h2</artifactId>
+                  <version>1.4.197</version>
+                </dependency>
+              </copyDependencies>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!-- End of Payara Micro profile -->
+
+  </profiles>
+
+</project>
