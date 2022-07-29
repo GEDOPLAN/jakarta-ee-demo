@@ -30,6 +30,7 @@ public class Country {
   @Id
   @Column(name = "ISO_CODE", length = 2)
   @EqualsAndHashCode.Include
+  @Setter(AccessLevel.NONE)
   private String isoCode;
 
   private String name;
