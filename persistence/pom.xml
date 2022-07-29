@@ -17,12 +17,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>jakarta.platform</groupId>
-      <artifactId>jakarta.jakartaee-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    
-    <dependency>
       <groupId>jakarta.persistence</groupId>
       <artifactId>jakarta.persistence-api</artifactId>
       <scope>provided</scope>
@@ -34,6 +28,13 @@
       <scope>provided</scope>
     </dependency>
 
+    <!-- Use platform dependency AFTER the other JEE dependencies! -->
+    <dependency>
+      <groupId>jakarta.platform</groupId>
+      <artifactId>jakarta.jakartaee-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>

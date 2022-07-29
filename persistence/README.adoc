@@ -1,0 +1,11 @@
+= jakarta-ee-demo-persistence =
+
+*Demo project for Jakarta Persistence*
+
+This simple project demonstrates the version 3.1 of Jakarta Persistence (part of JEE 10).
+
+The source directory `src/test/curl` contains a few shell scripts using curl for CRUD operations for two entity classes `Country` and `City`.
+
+One of the main changes from 2.2 (as part of JEE 8) besides the new package names (`javax.$$*$$` -> `jakarta.$$*$$`) is the persistent mapping of `java.util.UUID` fields. The demo class `City` makes use of an `UUID` id as alternative to a `@GeneratedValue` id.
+
+The curl script `city-check-expectations.sh` can be used to show the benefits of `UUID` ids over generated ones. Please refer to the comment of class `CityExpectationService`.

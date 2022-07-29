@@ -37,7 +37,7 @@
   <dependencyManagement>
     <dependencies>
       <!-- JEE-Standard -->
-      <!-- The JEE 10 umbrella ist still missing; therefor use 9.1 and patch the used spec versions -->
+      <!-- The JEE 10 umbrella ist still missing; therefore use 9.1, but patch the used spec versions -->
       <dependency>
         <groupId>jakarta.platform</groupId>
         <artifactId>jakarta.jakartaee-api</artifactId>
