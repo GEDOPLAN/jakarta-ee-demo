@@ -1,11 +1,12 @@
 package de.gedoplan.showcase.domain;
 
+import java.util.UUID;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,18 +17,22 @@ import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class City {
 
   public static final String TABLE_NAME = "JPA_CITY";
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @EqualsAndHashCode.Include
+  @Setter(AccessLevel.NONE)
+  // @GeneratedValue(strategy = GenerationType.IDENTITY)
   // @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cityGeneratorSequence")
   // @SequenceGenerator(name = "cityGeneratorSequence", sequenceName = "JPA_CITY_SEQUENCE", allocationSize = 100)
   // @GeneratedValue(strategy = GenerationType.TABLE, generator = "cityGeneratorTable")
   // @TableGenerator(name = "cityGeneratorTable", table = "JPA_CITY_GEN", pkColumnName = "GENERATOR", pkColumnValue = "City", valueColumnName = "ID", allocationSize = 100)
-  private Integer id;
+  // private Integer id;
+  private UUID id;
 
   private String name;
 
@@ -35,26 +40,18 @@ public class City {
 
   private int area;
 
-  @Override
-  public int hashCode() {
-    return (this.id == null) ? 0 : this.id.hashCode();
+  public City(String name, int population, int area) {
+    this.name = name;
+    this.population = population;
+    this.area = area;
+
+    generateId();
   }
 
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    City other = (City) obj;
+  public void generateId() {
     if (this.id == null) {
-      return false;
+      this.id = UUID.randomUUID();
     }
-    return this.id.equals(other.id);
   }
+
 }
