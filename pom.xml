@@ -30,6 +30,7 @@
   </repositories>
 
   <modules>
+    <module>faces</module>
     <module>persistence</module>
     <module>rest</module>
   </modules>
@@ -44,6 +45,12 @@
         <version>9.1.0</version>
       </dependency>
 
+      <dependency>
+        <groupId>jakarta.faces</groupId>
+        <artifactId>jakarta.faces-api</artifactId>
+        <version>4.0.0</version>
+      </dependency>
+    
       <dependency>
         <groupId>jakarta.persistence</groupId>
         <artifactId>jakarta.persistence-api</artifactId>

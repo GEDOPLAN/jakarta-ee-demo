@@ -1,0 +1,9 @@
+= jakarta-ee-demo-rest =
+
+*Demo project for Jakarta RESTful Webservices*
+
+This simple project demonstrates the version 3.1 of Jakarta RESTful Webservices (part of JEE 10).
+
+The differences to 2.1 (as part of JEE 8) are mainly the new package names (`javax.$$*$$` -> `jakarta.$$*$$`).
+
+Furthermore a REST service can now be bootstrapped in SE environments (i. e. without JEE server). This is shown in test class `SeMain`.
