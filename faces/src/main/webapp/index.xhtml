@@ -17,5 +17,14 @@
 
 <h:outputText value="${helloPresenter.hello}" />
 
+<hr/>
+
+<h:panelGrid columns="2">
+
+  <h:outputLabel value="Währungsrechner (Facelet-Variante): " />
+  <h:outputLink value="${request.contextPath}/currencyCalculator.xhtml">currencyCalculator.xhtml</h:outputLink>
+
+</h:panelGrid>
+
 </h:body> 
 </html>

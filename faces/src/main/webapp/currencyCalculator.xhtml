@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html"> 
+
+<h:head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>Currency calculator</title>
+</h:head>
+
+<h:body>
+  <h:panelGrid columns="2">
+    <h3>Currency calculator</h3>
+
+    <h:graphicImage library="images" name="scheineUndMuenzen1.jpg" />
+  </h:panelGrid>
+
+  <h:form>
+    <h:panelGrid columns="2">
+      <h:outputLabel for="foreignCurrency" value="Currency: " />
+      <h:selectOneMenu id="foreignCurrency" value="#{currencyPresenter.currencyId}">
+        <f:selectItems value="#{currencyPresenter.currencies}" var="currency" itemLabel="#{currency.id}" itemValue="#{currency.id}" />
+      </h:selectOneMenu>
+
+      <h:outputLabel for="currencyAmount" value="Amount: " />
+      <h:inputText id="currencyAmount" value="#{currencyPresenter.currencyAmount}" />
+
+      <h:commandButton value="convert" action="#{currencyPresenter.convert()}" />
+      <h:panelGroup />
+
+      <h:outputLabel for="euroAmount" value="Euro amount: " />
+      <h:outputText id="euroAmount" value="#{currencyPresenter.euroAmount}" />
+    </h:panelGrid>
+
+    <h:panelGrid columns="2">
+      <!-- Hier wird mittels eines ActionListeners die aktuelle View für die zukünftige Rücknavigation gemerkt. Dieser "Trick"
+           ist nur deshalb notwendig, weil die Musterlösung stückweise mit wechselnden View-Namen aufgebaut wird. Andernfalls
+           könnte mit festen View-IDs gearbeitet werden und das Attribut actionListener entfallen. -->
+      <h:commandLink value="Exchange rates" action="rates.xhtml" actionListener="#{navigationPresenter.pushCurrentViewId()}" />
+      <h:commandLink value="Help" action="help" actionListener="#{navigationPresenter.pushCurrentViewId()}" />
+    </h:panelGrid>
+  </h:form>
+</h:body>
+</html>

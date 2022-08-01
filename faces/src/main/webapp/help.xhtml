@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html"> 
+<h:head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>Currency calculator: Help</title>
+</h:head>
+
+<h:body>
+  <h3>Currency calculator: Help</h3>
+
+  <h4>Hilfeseite zum Währungsrechner</h4>
+  
+  Wählen Sie zunächst eine der angebotenen Fremdwährungen.
+  Geben Sie dann einen Fremdwährungsbetrag an und drücken Sie den Button "convert".
+  Der entsprechende Eurobetrag wird dann angezeigt.
+  
+  <br/>
+  
+  <h:form>
+    <h:commandLink value="back" action="#{navigationPresenter.popViewId()}" />
+  </h:form>
+</h:body>
+</html>
