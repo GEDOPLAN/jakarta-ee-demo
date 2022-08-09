@@ -21,12 +21,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>jakarta.validation</groupId>
-			<artifactId>jakarta.validation-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
 		<!-- Use platform dependency AFTER the other JEE dependencies! -->
 		<dependency>
 			<groupId>jakarta.platform</groupId>
