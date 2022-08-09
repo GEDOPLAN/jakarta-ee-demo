@@ -30,6 +30,7 @@
   </repositories>
 
   <modules>
+    <module>cdi</module>
     <module>faces</module>
     <module>persistence</module>
     <module>rest</module>
@@ -61,6 +62,12 @@
         <groupId>jakarta.ws.rs</groupId>
         <artifactId>jakarta.ws.rs-api</artifactId>
         <version>3.1.0</version>
+      </dependency>
+
+      <dependency>
+        <groupId>jakarta.enterprise.concurrent</groupId>
+        <artifactId>jakarta.enterprise.concurrent-api</artifactId>
+        <version>3.0.1</version>
       </dependency>
 
       <!-- Logging -->
