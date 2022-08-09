@@ -1,9 +1,18 @@
-= jakarta-ee-demo-rest =
+= jakarta-ee-demo-persistence =
 
-*Demo project for Jakarta RESTful Webservices*
+*Demo project for Jakarta Persistence*
 
-This simple project demonstrates the version 3.1 of Jakarta RESTful Webservices (part of JEE 10).
+This simple project demonstrates the version 3.1 of Jakarta Persistence (part of JEE 10).
 
-The differences to 2.1 (as part of JEE 8) are mainly the new package names (`javax.$$*$$` -> `jakarta.$$*$$`).
+The major differences to 2.2 (as part of JEE 8) are:
 
-Furthermore a REST service can now be bootstrapped in SE environments (i. e. without JEE server). This is shown in test class `SeMain`.
+- Package names (...)
+- `persistence.xml` Schema
+- `persistence.xml` Properties
+- Mapping of `java.util.UUID`
+
+Minor enhancements:
+
+- TBD
+- TBD
+

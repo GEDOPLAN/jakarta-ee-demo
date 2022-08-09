@@ -24,13 +24,14 @@ public class City {
   public static final String TABLE_NAME = "JPA_CITY";
 
   @Id
-  @EqualsAndHashCode.Include
-  @Setter(AccessLevel.NONE)
+  // @GeneratedValue
   // @GeneratedValue(strategy = GenerationType.IDENTITY)
   // @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cityGeneratorSequence")
   // @SequenceGenerator(name = "cityGeneratorSequence", sequenceName = "JPA_CITY_SEQUENCE", allocationSize = 100)
   // @GeneratedValue(strategy = GenerationType.TABLE, generator = "cityGeneratorTable")
   // @TableGenerator(name = "cityGeneratorTable", table = "JPA_CITY_GEN", pkColumnName = "GENERATOR", pkColumnValue = "City", valueColumnName = "ID", allocationSize = 100)
+  @EqualsAndHashCode.Include
+  @Setter(AccessLevel.NONE)
   // private Integer id;
   private UUID id;
 
