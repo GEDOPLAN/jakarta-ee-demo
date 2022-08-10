@@ -9,7 +9,6 @@ import de.gedoplan.showcase.service.CityExpectationService;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
-import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -40,11 +39,6 @@ public class CityResource {
   @Consumes(MediaType.APPLICATION_JSON)
   @Transactional
   public Response post(City city, @Context UriInfo uriInfo) {
-    if (city.getId() != null) {
-      throw new BadRequestException("id of new object may not be set upfront");
-    }
-
-    city.generateId();
 
     this.cityRepository.persist(city);
     this.cityRepository.flush();

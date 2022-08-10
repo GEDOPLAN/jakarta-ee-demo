@@ -1,5 +1,6 @@
 package de.gedoplan.showcase.domain;
 
+import jakarta.json.bind.annotation.JsonbCreator;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -13,14 +14,12 @@ import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 @Entity
 @NamedQuery(name = "Country.findByPhonePrefix", query = "select c from Country c where c.phonePrefix=:phonePrefix")
 @Table(name = Country.TABLE_NAME, uniqueConstraints = @UniqueConstraint(columnNames = "NAME"), indexes = @Index(columnList = "PHONE_PREFIX"))
 @Getter
-@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
@@ -30,7 +29,6 @@ public class Country {
   @Id
   @Column(name = "ISO_CODE", length = 2)
   @EqualsAndHashCode.Include
-  @Setter(AccessLevel.NONE)
   private String isoCode;
 
   private String name;
@@ -48,17 +46,14 @@ public class Country {
 
   private boolean expired;
 
-  public Country(String isoCode, String name, String phonePrefix, String carCode, long population, Continent continent) {
+  @JsonbCreator
+  public Country(String isoCode, String name, String phonePrefix, String carCode, long population, Continent continent, boolean expired) {
     this.isoCode = isoCode;
     this.name = name;
     this.phonePrefix = phonePrefix;
     this.carCode = carCode;
     this.population = population;
     this.continent = continent;
-  }
-
-  public Country(String isoCode, String name, String phonePrefix, String carCode, long population, Continent continent, boolean expired) {
-    this(isoCode, name, phonePrefix, carCode, population, continent);
     this.expired = expired;
   }
 
