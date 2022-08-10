@@ -167,9 +167,6 @@ public class CurrencyCalculatorView extends Facelet {
     convertButton.setId("convertButton");
     convertButton.setValue("convert");
     convertButton.addActionListener(event -> {
-      log.info("Button pressed: " + event.getSource());
-      log.info(currencyAmountInput.getValue().getClass().getName());
-      log.info(foreignCurrencySelection.getValue().getClass().getName());
       euroAmount.setValue(currencyService.convertToEuro(new BigDecimal(currencyAmountInput.getValue().toString()), foreignCurrencySelection.getValue().toString()));
     });
     HtmlPanelGroup fillUp = (HtmlPanelGroup) facesContext.getApplication().createComponent(HtmlPanelGroup.COMPONENT_TYPE);
