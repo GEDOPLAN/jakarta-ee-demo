@@ -18,8 +18,8 @@
   <h:form>
     <h:panelGrid columns="2">
       <h:outputLabel for="foreignCurrency" value="Currency: " />
-      <h:selectOneMenu id="foreignCurrency" value="#{currencyPresenter.currencyId}">
-        <f:selectItems value="#{currencyPresenter.currencies}" var="currency" itemLabel="#{currency.id}" itemValue="#{currency.id}" />
+      <h:selectOneMenu id="foreignCurrency" value="#{currencyPresenter.currency}">
+        <f:selectItems value="#{currencyPresenter.currencies}" var="currency" itemLabel="#{currency.id}" itemValue="#{currency}" />
       </h:selectOneMenu>
 
       <h:outputLabel for="currencyAmount" value="Amount: " />
