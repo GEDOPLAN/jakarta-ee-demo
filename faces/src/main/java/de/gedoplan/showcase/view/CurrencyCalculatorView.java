@@ -93,7 +93,7 @@ public class CurrencyCalculatorView extends Facelet {
     headerGrid.getChildren().add(output);
 
     HtmlGraphicImage image = (HtmlGraphicImage) facesContext.getApplication().createComponent(HtmlGraphicImage.COMPONENT_TYPE);
-    // TODO: How to add resources
+    image.setUrl("/jakarta-ee-demo-faces/jakarta.faces.resource/scheineUndMuenzen1.jpg.xhtml?ln=images");
     headerGrid.getChildren().add(image);
 
     body.getChildren().add(headerGrid);
