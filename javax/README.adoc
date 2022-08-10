@@ -1,0 +1,18 @@
+= jakarta-ee-demo-persistence =
+
+*Demo project for Jakarta Persistence*
+
+This simple project demonstrates the version 3.1 of Jakarta Persistence (part of JEE 10).
+
+The major differences to 2.2 (as part of JEE 8) are:
+
+- Package names (...)
+- `persistence.xml` Schema
+- `persistence.xml` Properties
+- Mapping of `java.util.UUID`
+
+Minor enhancements:
+
+- TBD
+- TBD
+

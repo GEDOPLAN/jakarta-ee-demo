@@ -32,6 +32,7 @@
   <modules>
     <module>cdi</module>
     <module>faces</module>
+    <module>javax</module>
     <module>persistence</module>
     <module>rest</module>
   </modules>
