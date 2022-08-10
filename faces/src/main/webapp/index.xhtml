@@ -28,5 +28,30 @@
 
 </h:panelGrid>
 
-</h:body> 
+<br/>
+
+<h3>CDI-Integration</h3>
+
+<p>Die folgenden Objekte können nun in CDI-Beans injiziert werden:</p>
+
+<ul>
+  <li>jakarta.faces.application.ResourceHandler</li>
+  <li>jakarta.faces.context.ExternalContext</li>
+  <li>jakarta.faces.context.FacesContext</li>
+  <li>jakarta.faces.context.Flash</li>
+  <li>jakarta.servlet.http.HttpSession</li>
+</ul>
+
+<p>Im folgenden wird ein Lookup auf zwei dieser Objekte über den BeanManager durchgeführt.</p>
+
+<h:panelGrid columns="2">
+
+  <h:outputLabel value="FacesContext verfügbar? " />
+  <h:outputText value="#{helloPresenter.facesContext}" />
+  <h:outputLabel value="ExternalContext verfügbar? " />
+  <h:outputText value="#{helloPresenter.externalContext}" />
+
+</h:panelGrid>
+
+</h:body>
 </html>
