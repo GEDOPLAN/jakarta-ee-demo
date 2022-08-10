@@ -11,20 +11,16 @@ import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import lombok.Getter;
+import lombok.Setter;
 
 @Named
 @RequestScoped
 public class CurrencyPresenter implements Serializable {
 
-  private String currencyId = "USD";
-
-  public String getCurrencyId() {
-    return this.currencyId;
-  }
-
-  public void setCurrencyId(String currencyId) {
-    this.currencyId = currencyId;
-  }
+  @Getter
+  @Setter
+  private Currency currency;
 
   @Inject
   private CurrencyRepository currencyRepository;
@@ -72,7 +68,7 @@ public class CurrencyPresenter implements Serializable {
   }
 
   public void convert() {
-    this.euroAmount = this.currencyService.convertToEuro(this.currencyAmount, this.currencyId);
+    this.euroAmount = this.currencyService.convertToEuro(this.currencyAmount, this.currency);
   }
 
 }

@@ -93,7 +93,7 @@ public class CurrencyCalculatorView extends Facelet {
     headerGrid.getChildren().add(output);
 
     HtmlGraphicImage image = (HtmlGraphicImage) facesContext.getApplication().createComponent(HtmlGraphicImage.COMPONENT_TYPE);
-    // TODO: How to add resources
+    image.setUrl("/jakarta-ee-demo-faces/jakarta.faces.resource/scheineUndMuenzen1.jpg.xhtml?ln=images");
     headerGrid.getChildren().add(image);
 
     body.getChildren().add(headerGrid);
@@ -167,9 +167,6 @@ public class CurrencyCalculatorView extends Facelet {
     convertButton.setId("convertButton");
     convertButton.setValue("convert");
     convertButton.addActionListener(event -> {
-      log.info("Button pressed: " + event.getSource());
-      log.info(currencyAmountInput.getValue().getClass().getName());
-      log.info(foreignCurrencySelection.getValue().getClass().getName());
       euroAmount.setValue(currencyService.convertToEuro(new BigDecimal(currencyAmountInput.getValue().toString()), foreignCurrencySelection.getValue().toString()));
     });
     HtmlPanelGroup fillUp = (HtmlPanelGroup) facesContext.getApplication().createComponent(HtmlPanelGroup.COMPONENT_TYPE);
