@@ -6,15 +6,18 @@
   
   <persistence-unit name="showcase">
     <jta-data-source>jdbc/showcase</jta-data-source>
-    
+	
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
     <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
     <validation-mode>CALLBACK</validation-mode>
     
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    
     <properties>
       <property name="jakarta.persistence.query.timeout" value="5000"/>
-      
+
+      <property name="eclipselink.ddl-generation" value="create-or-extend-tables" />
+      <property name="eclipselink.ddl-generation.output-mode" value="database" />
+
       <property name="hibernate.hbm2ddl.auto" value="update" />
       <property name="hibernate.id.new_generator_mappings" value="true" />
       <property name="hibernate.show_sql" value="false"/>
