@@ -18,8 +18,8 @@
   <properties>
     <java.code.version>17</java.code.version>
 
-    <wildfly.bootable.jar.version>7.0.0.Final</wildfly.bootable.jar.version>
-    <wildfly.version>27.0.0.Alpha4</wildfly.version>
+    <wildfly.bootable.jar.version>7.0.1.Final</wildfly.bootable.jar.version>
+    <wildfly.version>27.0.0.Alpha5</wildfly.version>
   </properties>
 
   <repositories>
@@ -40,35 +40,10 @@
   <dependencyManagement>
     <dependencies>
       <!-- JEE-Standard -->
-      <!-- The JEE 10 umbrella ist still missing; therefore use 9.1, but patch the used spec versions -->
       <dependency>
         <groupId>jakarta.platform</groupId>
         <artifactId>jakarta.jakartaee-api</artifactId>
-        <version>9.1.0</version>
-      </dependency>
-
-      <dependency>
-        <groupId>jakarta.faces</groupId>
-        <artifactId>jakarta.faces-api</artifactId>
-        <version>4.0.0</version>
-      </dependency>
-    
-      <dependency>
-        <groupId>jakarta.persistence</groupId>
-        <artifactId>jakarta.persistence-api</artifactId>
-        <version>3.1.0</version>
-      </dependency>
-
-      <dependency>
-        <groupId>jakarta.ws.rs</groupId>
-        <artifactId>jakarta.ws.rs-api</artifactId>
-        <version>3.1.0</version>
-      </dependency>
-
-      <dependency>
-        <groupId>jakarta.enterprise.concurrent</groupId>
-        <artifactId>jakarta.enterprise.concurrent-api</artifactId>
-        <version>3.0.1</version>
+        <version>10.0.0</version>
       </dependency>
 
       <!-- Logging -->
