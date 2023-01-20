@@ -35,6 +35,7 @@
     <module>javax</module>
     <module>persistence</module>
     <module>rest</module>
+    <module>rest-se</module>
   </modules>
 
   <dependencyManagement>
